@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class LoginPage extends BasePage implements BasePageTemplate {
+public class LoginPage extends BasePage {
 
     @FindBy(how = How.NAME, using = "UserName")
     public WebElement txtUserName;
@@ -31,7 +31,7 @@ public class LoginPage extends BasePage implements BasePageTemplate {
 
 
     @Override
-    public void navigate() {
+    public void navigate(String url) {
 
     }
 }

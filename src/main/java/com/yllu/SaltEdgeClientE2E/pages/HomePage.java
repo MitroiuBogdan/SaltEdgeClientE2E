@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HomePage extends BasePage implements BasePageTemplate {
+public class HomePage extends BasePage {
 
     private final LoginPage loginPage;
     @FindBy(how = How.LINK_TEXT, using = "Login")
@@ -27,13 +27,12 @@ public class HomePage extends BasePage implements BasePageTemplate {
         lnkLogin.click();
     }
 
-    @Override
-    public void navigate() {
-
-    }
-
     public boolean existEmployeeDetails() {
         return lnkEmployeeDetails.isDisplayed();
     }
 
+    @Override
+    public void navigate(String url) {
+
+    }
 }

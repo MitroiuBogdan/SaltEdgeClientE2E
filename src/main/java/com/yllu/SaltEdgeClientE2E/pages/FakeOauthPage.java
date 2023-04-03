@@ -3,10 +3,9 @@ package com.yllu.SaltEdgeClientE2E.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.springframework.stereotype.Component;
 
 
-public class FakeOauthPage extends BasePage{
+public class FakeOauthPage extends BasePage {
 
     @FindBy(how = How.LINK_TEXT, using = "Login")
     public WebElement lnkLogin;
@@ -21,4 +20,8 @@ public class FakeOauthPage extends BasePage{
     }
 
 
+    @Override
+    public void navigate(String url) {
+        navigateTo(url);
+    }
 }

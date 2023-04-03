@@ -18,4 +18,6 @@ public abstract class BasePage {
     public void navigateTo(String url) {
         webDriver.navigate().to(url);
     }
+    public abstract void navigate(String url);
+
 }
