@@ -18,12 +18,14 @@ public class MainPage extends BasePage {
     public void performScenario() {
         String TITLE_XPATH = "//a[@href='/']";
         String URL = "http://eaapp.somee.com/";
-        navigate(URL);
+        navigate();
         homePage.ClickLogin();
     }
 
     @Override
-    public void navigate(String url) {
-        navigateTo(url);
+    public void navigate() {
+        String TITLE_XPATH = "//a[@href='/']";
+        String URL = "http://eaapp.somee.com/";
+        navigateTo(URL);
     }
 }

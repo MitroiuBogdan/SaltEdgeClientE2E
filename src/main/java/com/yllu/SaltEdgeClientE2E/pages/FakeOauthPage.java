@@ -21,7 +21,7 @@ public class FakeOauthPage extends BasePage {
 
 
     @Override
-    public void navigate(String url) {
-        navigateTo(url);
+    public void navigate() {
+        navigateTo("dsa");
     }
 }

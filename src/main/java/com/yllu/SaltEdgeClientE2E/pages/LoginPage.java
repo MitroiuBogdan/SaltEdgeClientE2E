@@ -31,7 +31,7 @@ public class LoginPage extends BasePage {
 
 
     @Override
-    public void navigate(String url) {
+    public void navigate() {
 
     }
 }
