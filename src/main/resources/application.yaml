@@ -1,5 +1,0 @@
-e2e:
-  application:
-    host: "www.google.com"
-
-browser: "chrome"
