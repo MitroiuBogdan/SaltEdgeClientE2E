@@ -43,7 +43,7 @@ public class GetConnectionUrlStep {
     @Then("the url is returned")
     public void theUrlIsReturned() throws InterruptedException {
         fakeBankPage.navigateTo(connectUrl);
-        System.out.println(connectUrl);
+        fakeBankPage.clickProceed();
     }
 
 }
