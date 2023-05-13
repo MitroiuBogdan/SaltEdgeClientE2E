@@ -25,6 +25,7 @@ public class GetConnectionUrlStep {
     @Autowired
     FakeBankPage fakeBankPage;
 
+
     private String connectUrl;
 
 
@@ -43,7 +44,9 @@ public class GetConnectionUrlStep {
     @Then("the url is returned")
     public void theUrlIsReturned() throws InterruptedException {
         fakeBankPage.navigateTo(connectUrl);
-        fakeBankPage.clickProceed();
+//        fakeBankPage.clickProceed();
+        ConfirmPage confirmPage = fakeBankPage.clickProceed();
+        confirmPage.confirmClick();
     }
 
 }

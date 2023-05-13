@@ -1,34 +1,41 @@
 package com.yllu.SaltEdgeClientE2E.pages;
 
-import io.vavr.control.Try;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.time.Duration;
 
 import static io.vavr.control.Try.run;
 import static java.lang.Thread.sleep;
 
 @Component
 @Slf4j
+@Getter
+@Setter
 public class FakeBankPage {
 
 
     private final static String PROCEED_BUTTON_CLASS = "btn-signup";
+    private final static String CANCEL_BUTTON_CLASS = "btn-white";
 
     @FindBy(className = PROCEED_BUTTON_CLASS)
     public WebElement proceedElement;
 
-    //    private final ConfirmPage confirmPage;
+    @FindBy(className = CANCEL_BUTTON_CLASS)
+    public WebElement cancelElement;
+
     private final WebDriver webDriver;
+
+//    @Autowired
+//    private ConfirmPage confirmPage;
 
     public FakeBankPage() {
         webDriver = webDriver();
@@ -41,10 +48,18 @@ public class FakeBankPage {
     }
 
 
-    public void clickProceed() {
+    public ConfirmPage clickProceed() {
         log.info("Clicking the Proceed button");
         run(() -> sleep(500))
                 .andThen(() -> proceedElement.click());
+
+        return new ConfirmPage(webDriver);
+    }
+
+    public void clickCancel() {
+        log.info("Clicking the Proceed button");
+        run(() -> sleep(500))
+                .andThen(() -> cancelElement.click());
     }
 
     public WebDriver webDriver() {
