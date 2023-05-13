@@ -1,6 +1,7 @@
 package com.yllu.SaltEdgeClientE2E.saltedge;
 
 import com.yllu.SaltEdgeClientE2E.properties.ClientProperties;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -10,7 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
+
 @Component
+@Scope(SCOPE_CUCUMBER_GLUE)
 public class SaltEdgeClient {
 
     private final RestTemplate restTemplate;

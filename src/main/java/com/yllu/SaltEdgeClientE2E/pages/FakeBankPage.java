@@ -3,20 +3,17 @@ package com.yllu.SaltEdgeClientE2E.pages;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import static io.vavr.control.Try.run;
 import static java.lang.Thread.sleep;
 
-@Component
+
 @Slf4j
 @Getter
 @Setter
@@ -32,10 +29,7 @@ public class FakeBankPage {
     @FindBy(className = CANCEL_BUTTON_CLASS)
     public WebElement cancelElement;
 
-    private final WebDriver webDriver;
-
-//    @Autowired
-//    private ConfirmPage confirmPage;
+    private WebDriver webDriver;
 
     public FakeBankPage() {
         webDriver = webDriver();
@@ -43,10 +37,9 @@ public class FakeBankPage {
 
     }
 
-    public void navigateTo(String url) {
-        webDriver.navigate().to(url);
+    public void navigateTo(String connectUrl) {
+        webDriver.navigate().to(connectUrl);
     }
-
 
     public ConfirmPage clickProceed() {
         log.info("Clicking the Proceed button");
@@ -68,4 +61,5 @@ public class FakeBankPage {
         options.addArguments("--remote-allow-origins=*");
         return new ChromeDriver(options);
     }
+
 }
