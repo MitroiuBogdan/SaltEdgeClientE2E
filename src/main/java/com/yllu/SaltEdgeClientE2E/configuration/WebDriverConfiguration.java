@@ -1,4 +1,4 @@
-package com.yllu.SaltEdgeClientE2E;
+package com.yllu.SaltEdgeClientE2E.configuration;
 
 
 import org.openqa.selenium.WebDriver;

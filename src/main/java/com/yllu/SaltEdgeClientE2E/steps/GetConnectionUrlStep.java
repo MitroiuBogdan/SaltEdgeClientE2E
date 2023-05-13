@@ -1,7 +1,7 @@
 package com.yllu.SaltEdgeClientE2E.steps;
 
 
-import com.yllu.SaltEdgeClientE2E.WebDriverConfiguration;
+import com.yllu.SaltEdgeClientE2E.configuration.WebDriverConfiguration;
 import com.yllu.SaltEdgeClientE2E.pages.ConfirmPage;
 import com.yllu.SaltEdgeClientE2E.pages.FakeBankPage;
 import com.yllu.SaltEdgeClientE2E.saltedge.InitiateSessionRequest;
