@@ -1,6 +1,7 @@
 package com.yllu.SaltEdgeClientE2E.steps;
 
 
+import com.yllu.SaltEdgeClientE2E.WebDriverConfiguration;
 import com.yllu.SaltEdgeClientE2E.pages.ConfirmPage;
 import com.yllu.SaltEdgeClientE2E.pages.FakeBankPage;
 import com.yllu.SaltEdgeClientE2E.saltedge.InitiateSessionRequest;
@@ -8,6 +9,7 @@ import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
 import com.yllu.SaltEdgeClientE2E.saltedge.SessionData;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -15,11 +17,7 @@ public class GetConnectionUrlStep {
 
     @Autowired
     SaltEdgeClient saltEdgeClient;
-
-//    WebDriver webDriver = webDriver();
-
     private String connectUrl;
-
 
     @Given("get connect url")
     public void getConnectUrl() {
@@ -35,8 +33,8 @@ public class GetConnectionUrlStep {
 
     @Then("the url is returned")
     public void theUrlIsReturned() {
-
-        FakeBankPage fakeBankPage = new FakeBankPage();
+        WebDriver webDriver = WebDriverConfiguration.chromeDriver();
+        FakeBankPage fakeBankPage = new FakeBankPage(webDriver);
         fakeBankPage.navigateTo(connectUrl);
         ConfirmPage confirmPage = fakeBankPage.clickProceed();
         confirmPage.confirmClick();

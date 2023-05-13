@@ -1,6 +1,5 @@
 package com.yllu.SaltEdgeClientE2E.configuration;
 
-import com.yllu.SaltEdgeClientE2E.pages.FakeBankPage;
 import com.yllu.SaltEdgeClientE2E.properties.ClientProperties;
 import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
 import io.cucumber.spring.CucumberContextConfiguration;
