@@ -4,6 +4,7 @@ package com.yllu.SaltEdgeClientE2E.steps;
 import com.yllu.SaltEdgeClientE2E.configuration.WebDriverConfiguration;
 import com.yllu.SaltEdgeClientE2E.pages.ConfirmPage;
 import com.yllu.SaltEdgeClientE2E.pages.FakeBankPage;
+import com.yllu.SaltEdgeClientE2E.pages.FlowSelectionPage;
 import com.yllu.SaltEdgeClientE2E.saltedge.InitiateSessionRequest;
 import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
 import com.yllu.SaltEdgeClientE2E.saltedge.SessionData;
@@ -37,7 +38,8 @@ public class GetConnectionUrlStep {
         FakeBankPage fakeBankPage = new FakeBankPage(webDriver);
         fakeBankPage.navigateTo(connectUrl);
         ConfirmPage confirmPage = fakeBankPage.clickProceed();
-        confirmPage.confirmClick();
+        FlowSelectionPage flowSelectionPage = confirmPage.confirmClick();
+        flowSelectionPage.clickGrantAccess();
     }
 
 }

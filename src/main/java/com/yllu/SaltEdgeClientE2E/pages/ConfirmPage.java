@@ -22,9 +22,11 @@ public class ConfirmPage extends BasePage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void confirmClick() {
+    public FlowSelectionPage confirmClick() {
         log.info("Clicking the Proceed button");
         run(() -> sleep(500))
                 .andThen(() -> confirmElement.click());
+
+        return new FlowSelectionPage(webDriver);
     }
 }
