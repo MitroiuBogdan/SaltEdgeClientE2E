@@ -5,6 +5,7 @@ import com.yllu.SaltEdgeClientE2E.configuration.WebDriverConfiguration;
 import com.yllu.SaltEdgeClientE2E.pages.ConfirmPage;
 import com.yllu.SaltEdgeClientE2E.pages.FakeBankPage;
 import com.yllu.SaltEdgeClientE2E.pages.FlowSelectionPage;
+import com.yllu.SaltEdgeClientE2E.pages.ApplicationPage;
 import com.yllu.SaltEdgeClientE2E.saltedge.InitiateSessionRequest;
 import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
 import com.yllu.SaltEdgeClientE2E.saltedge.SessionData;
@@ -37,9 +38,14 @@ public class GetConnectionUrlStep {
         WebDriver webDriver = WebDriverConfiguration.chromeDriver();
         FakeBankPage fakeBankPage = new FakeBankPage(webDriver);
         fakeBankPage.navigateTo(connectUrl);
+
         ConfirmPage confirmPage = fakeBankPage.clickProceed();
         FlowSelectionPage flowSelectionPage = confirmPage.confirmClick();
-        flowSelectionPage.clickGrantAccess();
+        ApplicationPage applicationPage = flowSelectionPage.clickGrantAccess();
+        String url = applicationPage.returnBackToApplication();
+
+        System.out.println(url);
+
     }
 
 }

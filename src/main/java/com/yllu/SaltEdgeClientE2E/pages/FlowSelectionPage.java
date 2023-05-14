@@ -29,10 +29,11 @@ public class FlowSelectionPage extends BasePage {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void clickGrantAccess() {
+    public ApplicationPage clickGrantAccess() {
         log.info("Clicking the Grant access button");
         run(() -> sleep(500));
         grantAccessElement.click();
+        return new ApplicationPage(webDriver);
     }
 
 }
