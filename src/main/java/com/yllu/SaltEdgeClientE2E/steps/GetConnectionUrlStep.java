@@ -11,6 +11,7 @@ import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
 import com.yllu.SaltEdgeClientE2E.saltedge.SessionData;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.vavr.control.Try;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -39,12 +40,13 @@ public class GetConnectionUrlStep {
         FakeBankPage fakeBankPage = new FakeBankPage(webDriver);
         fakeBankPage.navigateTo(connectUrl);
 
-        ConfirmPage confirmPage = fakeBankPage.clickProceed();
-        FlowSelectionPage flowSelectionPage = confirmPage.confirmClick();
-        ApplicationPage applicationPage = flowSelectionPage.clickGrantAccess();
-        String url = applicationPage.returnBackToApplication();
+        String connectUrl = Try.of(fakeBankPage::clickProceed)
+                .mapTry(ConfirmPage::confirmClick)
+                .mapTry(FlowSelectionPage::clickGrantAccess)
+                .mapTry(ApplicationPage::returnBackToApplication)
+                .get();
 
-        System.out.println(url);
+        System.out.println(connectUrl);
 
     }
 
