@@ -1,15 +1,17 @@
 package com.yllu.SaltEdgeClientE2E.saltedge;
 
 import com.yllu.SaltEdgeClientE2E.properties.ClientProperties;
+import com.yllu.SaltEdgeClientE2E.saltedge.model.InitiateSessionRequest;
+import io.restassured.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 
@@ -17,22 +19,21 @@ import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 @Scope(SCOPE_CUCUMBER_GLUE)
 public class SaltEdgeClient {
 
-    private final RestTemplate restTemplate;
+    private final RestAssuredTemplate restAssuredTemplate;
     private final ClientProperties clientProperties;
 
-    private final static String GET_CONNECT_URL = "http://localhost:8090/session/create";
+    private final String GET_CONNECTION = "http://localhost:8090/session/create";
 
-    public SaltEdgeClient(RestTemplate restTemplate, ClientProperties clientProperties) {
-        this.restTemplate = restTemplate;
+    public SaltEdgeClient(ClientProperties clientProperties) {
+        this.restAssuredTemplate = new RestAssuredTemplate();
         this.clientProperties = clientProperties;
+
     }
 
-    public SessionData getConnectUrl(InitiateSessionRequest request) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+    public Response getConnectUrl(InitiateSessionRequest request) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json");
 
-        HttpEntity<InitiateSessionRequest> entity = new HttpEntity<>(request, headers);
-
-        return restTemplate.exchange(GET_CONNECT_URL, HttpMethod.POST, entity, SessionData.class).getBody();
+        return restAssuredTemplate.post(GET_CONNECTION, request, headers);
     }
 }

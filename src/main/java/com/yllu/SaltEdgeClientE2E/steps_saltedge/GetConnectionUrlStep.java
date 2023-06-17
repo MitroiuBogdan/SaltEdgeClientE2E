@@ -1,18 +1,13 @@
 package com.yllu.SaltEdgeClientE2E.steps_saltedge;
 
 
-import com.yllu.SaltEdgeClientE2E.configuration.WebDriverConfiguration;
-import com.yllu.SaltEdgeClientE2E.pages_saltedge.ConfirmPage;
-import com.yllu.SaltEdgeClientE2E.pages_saltedge.FakeBankPage;
-import com.yllu.SaltEdgeClientE2E.pages_saltedge.FlowSelectionPage;
-import com.yllu.SaltEdgeClientE2E.pages_saltedge.ApplicationPage;
-import com.yllu.SaltEdgeClientE2E.saltedge.InitiateSessionRequest;
+import com.yllu.SaltEdgeClientE2E.pages_saltedge.FakeBankWithClientKeys;
+import com.yllu.SaltEdgeClientE2E.saltedge.model.InitiateSessionRequest;
 import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
-import com.yllu.SaltEdgeClientE2E.saltedge.SessionData;
+import com.yllu.SaltEdgeClientE2E.saltedge.model.SessionData;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.vavr.control.Try;
-import org.openqa.selenium.WebDriver;
+import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -20,6 +15,9 @@ public class GetConnectionUrlStep {
 
     @Autowired
     SaltEdgeClient saltEdgeClient;
+    @Autowired
+    FakeBankWithClientKeys fakeBankWithClientKeys;
+
     private String connectUrl;
 
     @Given("get connect url")
@@ -30,22 +28,14 @@ public class GetConnectionUrlStep {
                 .build();
 
 
-        SessionData sessionData = saltEdgeClient.getConnectUrl(initiateSessionRequest);
-        this.connectUrl = sessionData.getLoginUrl();
+        Response response = saltEdgeClient.getConnectUrl(initiateSessionRequest);
+        SessionData sessionData = response.getBody().as(SessionData.class);
+        this.connectUrl = sessionData.getConnect_url();
     }
 
     @Then("the url is returned")
     public void theUrlIsReturned() {
-        WebDriver webDriver = WebDriverConfiguration.chromeDriver();
-        FakeBankPage fakeBankPage = new FakeBankPage(webDriver);
-        fakeBankPage.navigateTo(connectUrl);
-
-        String connectUrl = Try.of(fakeBankPage::clickProceed)
-                .mapTry(ConfirmPage::confirmClick)
-                .mapTry(FlowSelectionPage::clickGrantAccess)
-                .mapTry(ApplicationPage::returnBackToApplication)
-                .get();
-
+        fakeBankWithClientKeys.startWidgetHappyFlow(connectUrl);
         System.out.println(connectUrl);
 
     }

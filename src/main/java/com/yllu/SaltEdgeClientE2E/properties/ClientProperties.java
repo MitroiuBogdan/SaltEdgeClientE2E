@@ -9,13 +9,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 public class ClientProperties {
 
-    private String url;
+    private String host;
+    private String getConnection;
 
-    public String getUrl() {
-        return url;
+    public String getHost() {
+        return host;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getGetConnection() {
+        return getConnection;
+    }
+
+    public void setGetConnection(String getConnection) {
+        this.getConnection = getConnection;
     }
 }

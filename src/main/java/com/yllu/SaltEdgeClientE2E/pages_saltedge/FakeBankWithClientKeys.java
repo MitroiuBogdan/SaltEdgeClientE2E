@@ -21,7 +21,6 @@ public class FakeBankWithClientKeys {
     private final WebDriver webDriver;
 
     public FakeBankWithClientKeys() {
-//        webDriver = WebDriverManager.chromeDriver();
         webDriver = WebDriverConfiguration.chromeDriver();
     }
 
@@ -130,11 +129,11 @@ public class FakeBankWithClientKeys {
 
         public String clickReturnToApplication() {
             System.out.println("Clicking return back to application button");
-            run(() -> sleep(15000))
+            run(() -> sleep(10000))
                     .andThen(returnToApplicationElement::click);
 
             System.out.println("After clicking");
-            while (!webDriver.getCurrentUrl().contains("https://casy-test-app.ing.nl/default-template")) {
+            while (!webDriver.getCurrentUrl().contains("https://exemple.com/")) {
                 run(() -> sleep(1000));
             }
             return webDriver.getCurrentUrl();

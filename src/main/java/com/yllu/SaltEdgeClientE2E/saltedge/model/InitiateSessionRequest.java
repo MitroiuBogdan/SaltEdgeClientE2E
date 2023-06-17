@@ -1,4 +1,4 @@
-package com.yllu.SaltEdgeClientE2E.saltedge;
+package com.yllu.SaltEdgeClientE2E.saltedge.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
