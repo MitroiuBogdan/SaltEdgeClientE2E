@@ -1,4 +1,4 @@
-package com.yllu.SaltEdgeClientE2E.pages;
+package com.yllu.SaltEdgeClientE2E.pages_saltedge;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;

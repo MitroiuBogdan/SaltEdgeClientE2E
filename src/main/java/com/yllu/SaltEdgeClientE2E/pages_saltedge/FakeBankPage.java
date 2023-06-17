@@ -1,4 +1,4 @@
-package com.yllu.SaltEdgeClientE2E.pages;
+package com.yllu.SaltEdgeClientE2E.pages_saltedge;
 
 import lombok.Getter;
 import lombok.Setter;

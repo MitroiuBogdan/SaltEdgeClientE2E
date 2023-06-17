@@ -1,11 +1,11 @@
-package com.yllu.SaltEdgeClientE2E.steps;
+package com.yllu.SaltEdgeClientE2E.steps_saltedge;
 
 
 import com.yllu.SaltEdgeClientE2E.configuration.WebDriverConfiguration;
-import com.yllu.SaltEdgeClientE2E.pages.ConfirmPage;
-import com.yllu.SaltEdgeClientE2E.pages.FakeBankPage;
-import com.yllu.SaltEdgeClientE2E.pages.FlowSelectionPage;
-import com.yllu.SaltEdgeClientE2E.pages.ApplicationPage;
+import com.yllu.SaltEdgeClientE2E.pages_saltedge.ConfirmPage;
+import com.yllu.SaltEdgeClientE2E.pages_saltedge.FakeBankPage;
+import com.yllu.SaltEdgeClientE2E.pages_saltedge.FlowSelectionPage;
+import com.yllu.SaltEdgeClientE2E.pages_saltedge.ApplicationPage;
 import com.yllu.SaltEdgeClientE2E.saltedge.InitiateSessionRequest;
 import com.yllu.SaltEdgeClientE2E.saltedge.SaltEdgeClient;
 import com.yllu.SaltEdgeClientE2E.saltedge.SessionData;
