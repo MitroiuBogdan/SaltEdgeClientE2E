@@ -5,6 +5,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.vavr.control.Try;
@@ -15,8 +16,8 @@ import static io.restassured.config.RedirectConfig.redirectConfig;
 
 public class RestAssuredTemplate {
 
-    private RequestSpecification initialSpec;
-    private ObjectMapper objectMapper;
+    private final RequestSpecification initialSpec;
+    private final ObjectMapper objectMapper;
 
     public RestAssuredTemplate() {
         this.objectMapper = new ObjectMapper();
@@ -24,19 +25,17 @@ public class RestAssuredTemplate {
     }
 
 
-    public Response post(String url, Object body, Map<String, String> headers) {
-        RequestSpecification requestSpec= RestAssured.given().spec(initialSpec);
-
+    public Response post(String url, Object body, Headers headers) {
         String requestBody = Try.of(() -> objectMapper.writeValueAsString(body)).get();
-        headers.entrySet().stream()
-                .forEach(entry -> requestSpec.header(entry.getKey(), entry.getValue()));
 
-        requestSpec.body(requestBody);
-        requestSpec.log().all();
+        Response response = RestAssured.given()
+                .spec(initialSpec)
+                .body(requestBody)
+                .headers(headers)
+                .log().all()
+                .post(url);
 
-        Response response = requestSpec.post(url);
         response.getBody().print();
-
         return response;
     }
 

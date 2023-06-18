@@ -2,16 +2,11 @@ package com.yllu.SaltEdgeClientE2E.saltedge;
 
 import com.yllu.SaltEdgeClientE2E.properties.ClientProperties;
 import com.yllu.SaltEdgeClientE2E.saltedge.model.InitiateSessionRequest;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
 import io.restassured.response.Response;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static io.cucumber.spring.CucumberTestContext.SCOPE_CUCUMBER_GLUE;
 
@@ -31,8 +26,9 @@ public class SaltEdgeClient {
     }
 
     public Response getConnectUrl(InitiateSessionRequest request) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Content-Type", "application/json");
+        Headers headers=new Headers(
+                new Header("Content-Type", "application/json")
+        );
 
         return restAssuredTemplate.post(GET_CONNECTION, request, headers);
     }
