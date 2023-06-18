@@ -4,6 +4,7 @@ import com.yllu.SaltEdgeClientE2E.properties.ClientProperties;
 import com.yllu.SaltEdgeClientE2E.saltedge.model.InitiateSessionRequest;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -25,11 +26,7 @@ public class SaltEdgeClient {
 
     }
 
-    public Response getConnectUrl(InitiateSessionRequest request) {
-        Headers headers=new Headers(
-                new Header("Content-Type", "application/json")
-        );
-
-        return restAssuredTemplate.post(GET_CONNECTION, request, headers);
+    public Response getConnectUrl(InitiateSessionRequest request, Headers headers) {
+        return restAssuredTemplate.exchange(GET_CONNECTION, Method.POST, request, headers);
     }
 }
