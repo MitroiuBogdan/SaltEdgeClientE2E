@@ -43,26 +43,28 @@ public class GetConnectionUrlStep {
                 .build();
 
 
-        Response response = saltEdgeClient.getConnectUrl(initiateSessionRequest);
+//        Response response = saltEdgeClient.getConnectUrl(initiateSessionRequest);
 
         // Validations
 //        response.then()
 //                .body("connect_url", notNullValue());
 
-//        response
-//                .then()
-//                .assertThat()
-//                .body(matchesJsonSchemaInClasspath("get-connect-url.json"))
-//                .assertThat()
-//                .statusCode(200);
+        SessionData sessionData = saltEdgeClient.getConnectUrl(initiateSessionRequest)
+                .then()
+                .assertThat().body(matchesJsonSchemaInClasspath("get-connect-url.json"))
+                .assertThat().statusCode(200)
+                .extract()
+                .as(new TypeRef<>() {});
+
+        Assert.assertNotNull(sessionData.getConnect_url());
 
 //        then().body("price", is(12.12f))
 //                body("$", hasItems(1, 2, 3));
 
         //        JsonPath.from(response.asString()).get("field");
 //        https://www.hascode.com/2011/10/testing-restful-web-services-made-easy-using-the-rest-assured-framework/
-        SessionData sessionData = response.as(new TypeRef<>() {
-        });
+//        SessionData sessionData = response.as(new TypeRef<>() {
+//        });
 //        Assert.assertNotNull(sessionData);
 //        Assert.assertNotNull(sessionData.getConnect_url());
 // Whe
