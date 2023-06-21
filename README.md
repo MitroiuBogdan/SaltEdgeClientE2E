@@ -25,3 +25,15 @@ Feature
 • Scenario Outline
 • Examples
 
+Feature: Delete Widgets
+Background:
+Given I am logged in as an administrator
+...
+An alternative is to tag the feature and then use a @Before hook to run this
+same code to log in as an administrator.
+@admin
+Feature: Delete Widgets
+...
+@Before("@admin")
+public void logInAsAdmin() {
+//

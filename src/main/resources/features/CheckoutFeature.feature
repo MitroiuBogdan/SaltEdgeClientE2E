@@ -3,7 +3,6 @@ Feature: Checkout
 #    Given the price of a "banana" is 40c
 #    When I checkout 1 "banana"
 #    Then the total price should be 40c
-#
 
 
 #  Scenario Outline: Checkout bananas
@@ -32,11 +31,12 @@ Feature: Checkout
 #    Then the form should be redisplayed
 #    And I should see a message advising me of the correct number of digits
 
-#  Scenario: Attempt withdrawal using stolen card
-#    Given I have $100 in my account
-#    Given my card is invalid
-#    When I request $50
-#    Then my card should not be returned
-#    Then I should be told to contact the bank
+  #Background: use this for generatring the AC
+  Scenario: Attempt withdrawal using stolen card
+    Given I have $(100) in my account
+    Given my card is invalid
+    When I request $50
+    Then my card should not be returned
+    Then I should be told to contact the bank
 
 
