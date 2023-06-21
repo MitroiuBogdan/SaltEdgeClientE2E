@@ -11,3 +11,17 @@ String cookieValue = response.getCookie("cookieName");
 String statusLine = response.getStatusLine();
 // Get status code
 int statusCode = response.getStatusCode();
+
+
+Feature
+• Background
+• Scenario
+• Given
+• When
+• Then
+• And
+• But
+• *
+• Scenario Outline
+• Examples
+
